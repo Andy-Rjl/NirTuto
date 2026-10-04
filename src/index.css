@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Désactive le scroll-behavior: smooth injecté par Tailwind base */
+html {
+  scroll-behavior: auto !important;
+}
+
+@media print {
+  /*  Reset Global Impression */
+  body * {
+    visibility: hidden;
+  }
+
+  /*  Déf des formats de page */
+  @page landscape-page {
+    size: landscape;
+    margin: 0;
+  }
+
+  @page portrait-page {
+    size: portrait;
+    margin: 0;
+  }
+
+  /*  Style pour le CERTIFICAT  */
+  #certificat-a-imprimer, #certificat-a-imprimer * {
+    visibility: visible;
+  }
+
+  #certificat-a-imprimer {
+    page: landscape-page;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 297mm !important;
+    height: 210mm !important;
+    background: white !important;
+    margin: 0 !important;
+    padding: 10mm !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 9999;
+  }
+
+  /*  Style pour la FACTURE  */
+  #facture-a-imprimer, #facture-a-imprimer * {
+    visibility: visible;
+  }
+
+  #facture-a-imprimer {
+    page: portrait-page; 
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 210mm !important; 
+    height: 297mm !important;
+    background: white !important;
+    margin: 0 !important;
+    padding: 15mm !important;
+    z-index: 9998;
+  }
+
+  /*   Responsive Print */
+  img {
+    height: 35mm !important;
+    display: block !important;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Ajustements Certificat */
+  #certificat-a-imprimer h3 {
+    font-size: 45pt !important;
+  }
+  
+  #certificat-a-imprimer .font-bold.text-sm, 
+  #certificat-a-imprimer .text-3xl {
+    font-size: 35pt !important;
+    line-height: 1.2 !important;
+  }
+
+  #certificat-a-imprimer p {
+    font-size: 16pt !important;
+    color: #1a1a1a !important;
+  }
+
+  #certificat-a-imprimer #pied {
+    margin-top: 10mm;
+    margin-left: 50mm;
+  }
+
+  /* Forcer les couleurs sur tous les écrans */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+@keyframes gradient-text {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradient-text 4s linear infinite;
+}
+
+@keyframes soft-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+
+.animate-soft-zoom {
+  animation: soft-zoom 20s infinite alternate ease-in-out;
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
